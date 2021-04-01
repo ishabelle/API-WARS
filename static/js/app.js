@@ -91,7 +91,7 @@ function displayPlanets(data) {
                         let html = `<tr>
                                         <td>${residents['name']}</td>
                                         <td>${residents['height']}</td>
-                                        <td>${residents['mass']}</td>
+                                        <td>${dataMassFormat(residents['mass'])}</td>
                                         <td>${residents['hair_color']}</td>
                                         <td>${residents['skin_color']}</td>
                                         <td>${residents['eye_color']}</td>
@@ -142,6 +142,15 @@ function dataDiameterFormat(data) {
 function dataPopulationFormat(data) {
     if (data !== 'unknown') {
         return new Intl.NumberFormat().format(data) + ' people'
+    } else {
+        return data
+    }
+}
+
+
+function dataMassFormat(data) {
+    if (data !== 'unknown') {
+        return new Intl.NumberFormat().format(data) + ' kg'
     } else {
         return data
     }
