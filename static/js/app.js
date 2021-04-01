@@ -1,11 +1,18 @@
 let allPlanets = document.querySelector("#planets");
 let page = 1;
 
+let previousButton = document.querySelector(".previous")
+let nextButton = document.querySelector(".next")
+
 
 function downloadPlanets(url) {
     fetch(url)
         .then((response) => response.json())
         .then((planets) => {
+            let previousData = planets.previous
+            let nextData = planets.next
+            previousData !== null ? previousButton.removeAttribute("disabled") : previousButton.setAttribute("disabled", "disabled")
+            nextData === null ? nextButton.setAttribute("disabled", "disabled") : nextButton.removeAttribute("disabled")
             displayPlanets(planets)
         })
 }
@@ -41,6 +48,18 @@ function displayPlanets(data) {
                            </tr>`
     })
 }
+
+
+previousButton.addEventListener('click', function () {
+    page -= 1
+    downloadPlanets(`https://swapi.dev/api/planets/?page=${page}`)
+})
+
+
+nextButton.addEventListener('click', function () {
+    page += 1
+    downloadPlanets(`https://swapi.dev/api/planets/?page=${page}`)
+})
 
 
 downloadPlanets(`https://swapi.dev/api/planets/?page=${page}`)
