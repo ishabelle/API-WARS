@@ -1,27 +1,16 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
-{% block content %}
+{% block body %}
 
 <h1>STAR WARS UNIVERSE</h1>
-<div>
-    <button>PREVIOUS</button>
-    <button>NEXT</button>
-</div>
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>NAME</th>
-            <th>DIAMETER</th>
-            <th>CLIMATE</th>
-            <th>TERRAIN</th>
-            <th>SURFACE WATER</th>
-            <th>POPULATION</th>
-            <th>RESIDENTS</th>
-        </tr>
-        </thead>
-        <tbody></tbody>
+
+<div class="container" id="allPlanets">
+    <div class="buttons">
+        <button class="previous">PREVIOUS</button>
+        <button class="next">NEXT</button>
+    </div>
+    <table id="planets">
     </table>
 </div>
+
 {% endblock %}
