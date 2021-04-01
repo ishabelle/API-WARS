@@ -84,6 +84,9 @@ function dataPopulationFormat(data) {
     if (data !== 'unknown') {
         return new Intl.NumberFormat().format(data) + " people"
     }
+    else {
+        return data
+    }
 }
 
 
