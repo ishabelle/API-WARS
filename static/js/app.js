@@ -43,7 +43,7 @@ function displayPlanets(data) {
                                <td>${detail.diameter}</td>
                                <td>${detail.climate}</td>
                                <td>${detail.terrain}</td>
-                               <td>${detail.surface_water}</td>
+                               <td>${dataWaterFormat(detail.surface_water)}</td>
                                <td>${detail.population}</td>
                            </tr>`
     })
@@ -60,6 +60,15 @@ nextButton.addEventListener('click', function () {
     page += 1
     downloadPlanets(`https://swapi.dev/api/planets/?page=${page}`)
 })
+
+
+function dataWaterFormat(data) {
+    if (data !== 'unknown') {
+        return data + "%"
+    } else {
+        return data
+    }
+}
 
 
 downloadPlanets(`https://swapi.dev/api/planets/?page=${page}`)
