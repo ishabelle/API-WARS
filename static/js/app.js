@@ -44,7 +44,7 @@ function displayPlanets(data) {
                                <td>${detail.climate}</td>
                                <td>${detail.terrain}</td>
                                <td>${dataWaterFormat(detail.surface_water)}</td>
-                               <td>${detail.population}</td>
+                               <td>${dataPopulationFormat(detail.population)}</td>
                            </tr>`
     })
 }
@@ -79,5 +79,12 @@ function dataDiameterFormat(data) {
         return data
     }
 }
+
+function dataPopulationFormat(data) {
+    if (data !== 'unknown') {
+        return new Intl.NumberFormat().format(data) + " people"
+    }
+}
+
 
 downloadPlanets(`https://swapi.dev/api/planets/?page=${page}`)
