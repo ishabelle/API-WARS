@@ -90,13 +90,13 @@ function displayPlanets(data) {
                         let tBodyR = document.querySelector('#tbodyResidents')
                         let html = `<tr>
                                         <td>${residents['name']}</td>
-                                        <td>${residents['height']}</td>
+                                        <td>${dataHeightFormat(residents['height'])}</td>
                                         <td>${dataMassFormat(residents['mass'])}</td>
                                         <td>${residents['hair_color']}</td>
                                         <td>${residents['skin_color']}</td>
                                         <td>${residents['eye_color']}</td>
                                         <td>${residents['birth_year']}</td>
-                                        <td>${residents['gender']}</td>
+                                        <td>${dataGenderFormat(residents['gender'])}</td>
                                     </tr>`
                         tBodyR.insertAdjacentHTML('beforeend', html)
                     })
@@ -152,6 +152,16 @@ function dataMassFormat(data) {
     if (data !== 'unknown') {
         return new Intl.NumberFormat().format(data) + ' kg'
     } else {
+        return data
+    }
+}
+
+
+function dataHeightFormat(data) {
+    if (data !== 'unknown') {
+        return new Intl.NumberFormat().format(data) + ' m'
+    }
+    else {
         return data
     }
 }
