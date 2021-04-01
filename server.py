@@ -1,12 +1,11 @@
-from flask import Flask, render_template, redirect, url_for, session, request
+from flask import Flask, render_template, redirect, request, url_for
+
+app = Flask(__name__)
 
 
-app = Flask('__name__')
-
-
-@app.route('/')
-def main_page():
-    return render_template('main_page.html')
+@app.route("/")
+def index_page():
+    return render_template("main_page.html")
 
 
 if __name__ == "__main__":
