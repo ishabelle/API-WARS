@@ -74,8 +74,7 @@ function dataWaterFormat(data) {
 function dataDiameterFormat(data) {
     if (data !== 'unknown') {
         return new Intl.NumberFormat().format(data) + ' km'
-    }
-    else {
+    } else {
         return data
     }
 }
@@ -83,8 +82,7 @@ function dataDiameterFormat(data) {
 function dataPopulationFormat(data) {
     if (data !== 'unknown') {
         return new Intl.NumberFormat().format(data) + " people"
-    }
-    else {
+    } else {
         return data
     }
 }
