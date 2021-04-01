@@ -1,28 +1,26 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
-{% block content %}
+{% block body %}
 
 <h1>STAR WARS UNIVERSE</h1>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Diameter</th>
+            <th scope="col">Climate</th>
+            <th scope="col">Terrain</th>
+            <th scope="col">Surface Water</th>
+            <th scope="col">Population</th>
+            <th scope="col">Residents</th>
+            <th scope="col">Vote</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 
-<table>
-
-    <thead>
-    <tr>
-        <th>NAME</th>
-        <th>DIAMETER</th>
-        <th>CLIMATE</th>
-        <th>TERRAIN</th>
-        <th>SURFACE WATER</th>
-        <th>POPULATION</th>
-        <th>RESIDENTS</th>
-        <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <!-- TO DO: fill dataset -->
-    </tbody>
-
-</table>
 
 {% endblock %}
