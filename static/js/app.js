@@ -96,7 +96,7 @@ function displayPlanets(data) {
                                         <td>${residents['skin_color']}</td>
                                         <td>${residents['eye_color']}</td>
                                         <td>${residents['birth_year']}</td>
-                                        <td>${dataGenderFormat(residents['gender'])}</td>
+                                        <td>${residents['gender']}</td>
                                     </tr>`
                         tBodyR.insertAdjacentHTML('beforeend', html)
                     })
@@ -159,7 +159,7 @@ function dataMassFormat(data) {
 
 function dataHeightFormat(data) {
     if (data !== 'unknown') {
-        return new Intl.NumberFormat().format(data) + ' m'
+        return new Intl.NumberFormat().format(data/100) + ' m'
     }
     else {
         return data
