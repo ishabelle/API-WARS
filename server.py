@@ -29,6 +29,11 @@ def register_new_user():
     return redirect(url_for('index_page'))
 
 
+@app.route("/login")
+def login_page():
+    return render_template("login_page.html")
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
