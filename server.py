@@ -8,6 +8,11 @@ def index_page():
     return render_template("main_page.html")
 
 
+@app.route("/registration")
+def registration_page():
+    return render_template("registration_page.html")
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
