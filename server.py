@@ -1,4 +1,8 @@
 from flask import Flask, render_template, redirect, request, url_for
+import db_common
+import db_manager
+import password_generator
+
 
 app = Flask(__name__)
 
@@ -11,6 +15,18 @@ def index_page():
 @app.route("/registration")
 def registration_page():
     return render_template("registration_page.html")
+
+
+@app.route("/registration", methods=["POST"])
+def register_new_user():
+    new_user = request.form.to_dict()
+    hashed_password = password_generator.generate_hash_password(request.form.get('password'))
+    new_user['password'] = hashed_password
+    if db_manager.add_user(new_user) is False:
+        return redirect(url_for('registration_page'))
+    db_manager.add_user(new_user)
+    print("User registered")
+    return redirect(url_for('index_page'))
 
 
 if __name__ == "__main__":
