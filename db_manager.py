@@ -19,6 +19,16 @@ def add_user(cursor: RealDictCursor, new_user):
     else:
         query = """
         INSERT INTO users (username, password, submission_time)
-        VALUES (%s, %s, now())
+        VALUES (%s, %s, now());
         """
         cursor.execute(query, (new_user["username"], new_user["password"]))
+
+
+@db_common.connection_handler
+def get_user_details(cursor: RealDictCursor, username):
+    query = """
+    SELECT * FROM users
+    WHERE username = %(username)s;
+    """
+    cursor.execute(query, {'username': username})
+    cursor.fetchone()
