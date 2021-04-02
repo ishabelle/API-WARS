@@ -1,10 +1,12 @@
-from flask import Flask, render_template, redirect, request, url_for
-import db_common
+from flask import Flask, render_template, redirect, request, url_for, flash
+import os
+
 import db_manager
 import password_generator
 
 
 app = Flask(__name__)
+app.secret_key = (os.urandom(16))
 
 
 @app.route("/")
@@ -32,6 +34,22 @@ def register_new_user():
 @app.route("/login")
 def login_page():
     return render_template("login_page.html")
+
+
+@app.route("/login", methods=["POST"])
+def login_user():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    user_details = db_manager.get_user_details(username)
+    if not user_details:
+        flash("INVALID USERNAME OR PASSWORD")
+        return redirect(url_for('login_page'))
+    else:
+        verified_password = password_generator.check_hash_password(user_details['password'], password)
+    if not verified_password:
+        flash("INVALID PASSWORD")
+    else:
+        return redirect(url_for('index_page'))
 
 
 if __name__ == "__main__":
