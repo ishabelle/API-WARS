@@ -56,6 +56,14 @@ def login():
     return render_template('login_page.html')
 
 
+@app.route('/logout')
+def logout():
+    session.pop('id', None)
+    session.pop('username', None)
+    print("LOGGED OUT")
+    return redirect(url_for('registration_page'))
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
