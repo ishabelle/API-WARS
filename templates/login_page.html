@@ -2,16 +2,22 @@
 
 {% block body %}
 
-<h1>LOGIN PAGE</h1>
+<h1 class="page-titles">LOGIN PAGE</h1>
 
-<form method="post">
-    <label for="username"></label>
-    <input type="text" name="username" required placeholder="ENTER USERNAME">
-    <br><br>
-    <label for="password"></label>
-    <input type="password" name="password" required placeholder="ENTER PASSWORD">
-    <br><br>
-    <input type="submit" value="LOGIN">
-</form>
+<div class="box-card-profile">
+    <div class="main-card-profile">
+        <div class="main-card-profile-body">
+            <form method="post">
+                <label for="username"></label>
+                <input type="text" name="username" required placeholder="ENTER USERNAME">
+                <br><br>
+                <label for="password"></label>
+                <input type="password" name="password" required placeholder="ENTER PASSWORD">
+                <br><br>
+                <input type="submit" value="LOGIN">
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
