@@ -91,3 +91,22 @@ button {
     font-size: 20px;
     font-weight: bold;
 }
+
+.header {
+    padding: 5px 0 0 0;
+    margin: 0;
+    color: #ffffff;
+    background: #0b0c10 url("https://newevolutiondesigns.com/images/freebies/galaxy-wallpaper-35.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.header h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.header-logo-wrapper {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1600px;
+}
