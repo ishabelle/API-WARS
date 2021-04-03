@@ -23,6 +23,11 @@
     border-collapse: collapse;
 }
 
+.header-residents {
+    text-transform: uppercase;
+    text-align: center;
+}
+
 th, td {
     padding: 5px;
     border: solid 1px;
@@ -143,3 +148,4 @@ button {
 html {
   margin: 25px;
 }
+
