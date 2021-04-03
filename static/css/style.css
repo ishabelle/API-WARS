@@ -1,3 +1,15 @@
+/* MAIN PAGE - ALL PLANETS */
+
+html {
+  margin: 25px;
+}
+
+button {
+    width: 180px;
+    height: 30px;
+    cursor: pointer;
+}
+
 * {
     font-family: "Arial Narrow", sans-serif;
     box-sizing: border-box;
@@ -12,6 +24,9 @@
 #planets, td, th {
     border-collapse: collapse;
 }
+
+
+/* PAGE WITH DETAILS */
 
 #residents-table {
     width: 80%;
@@ -79,23 +94,19 @@ th, td {
 
 .disabled {
     border: none;
-
 }
 
 .disabled:disabled {
     color: black;
 }
 
-button {
-    width: 180px;
-    height: 30px;
-    cursor: pointer;
-}
-
 .signed-as {
     font-weight: bold;
     color: #668686;
 }
+
+
+/* MAIN PAGE WITH NAVBAR */
 
 .header {
     padding: 5px 0 0 0;
@@ -120,7 +131,6 @@ button {
     background-color: #323232;
     margin-bottom: 50px;
     margin-top: 50px;
-
 }
 
 .after-header .after-header-wrap {
@@ -145,7 +155,6 @@ button {
     color: #2c5151;
 }
 
-html {
-  margin: 25px;
-}
+
+/* LOGIN AND REGISTRATION PAGES */
 
