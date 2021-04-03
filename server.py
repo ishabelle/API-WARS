@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 import os
 import db_manager
 
@@ -21,15 +21,16 @@ def registration_page():
 @app.route('/registration', methods=['GET', 'POST'])
 def register():
     if 'username' in session:
-        return redirect(url_for("display_questions_list"))
+        return redirect(url_for("index_page"))
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
         submission_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         if db_manager.register_user(username, password, submission_time) is False:
-            print('NOT REGISTERED')
+            flash('Username already exists, please choose another one!')
         db_manager.register_user(username, password, submission_time)
-        return redirect(url_for('login'))
+        flash('Successful registration. Log in to continue.')
+        return redirect(url_for('login_page'))
     return render_template('registration_page.html')
 
 
@@ -41,7 +42,7 @@ def login_page():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'username' in session:
-        return redirect(url_for('display_questions_list'))
+        return redirect(url_for('index_page'))
     if request.method == 'POST':
         username = request.form.get('username')
         typed_password = request.form.get('password')
@@ -49,10 +50,10 @@ def login():
         if user and db_manager.verify_password(typed_password, user['password']):
             session['user_id'] = user['id']
             session['username'] = username
-            print('LOGGED IN')
+            flash('Login successful!')
             return redirect('/')
         else:
-            print('INVALID USERNAME OR PASSWORD')
+            flash('Wrong username or password. Please try again.')
     return render_template('login_page.html')
 
 
@@ -60,7 +61,7 @@ def login():
 def logout():
     session.pop('id', None)
     session.pop('username', None)
-    print("LOGGED OUT")
+    flash("You are logged out!")
     return redirect(url_for('index_page'))
 
 
