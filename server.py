@@ -26,11 +26,14 @@ def register():
         username = request.form.get('username')
         password = request.form.get('password')
         submission_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        if db_manager.register_user(username, password, submission_time) is False:
+        if username == '' or password == '':
+            flash('Please, fill in both fields.')
+        elif db_manager.register_user(username, password, submission_time) is False:
             flash('Username already exists, please choose another one!')
-        db_manager.register_user(username, password, submission_time)
-        flash('Successful registration. Log in to continue.')
-        return redirect(url_for('login_page'))
+        else:
+            db_manager.register_user(username, password, submission_time)
+            flash('Successful registration. Log in to continue.')
+            return redirect(url_for('login_page'))
     return render_template('registration_page.html')
 
 
