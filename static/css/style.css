@@ -75,3 +75,8 @@ button {
     height: 25px;
     cursor: pointer;
 }
+
+.signed-as {
+    font-size: 20px;
+    font-weight: bold;
+}
