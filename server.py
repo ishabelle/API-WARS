@@ -61,7 +61,7 @@ def logout():
     session.pop('id', None)
     session.pop('username', None)
     print("LOGGED OUT")
-    return redirect(url_for('registration_page'))
+    return redirect(url_for('index_page'))
 
 
 if __name__ == "__main__":
