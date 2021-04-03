@@ -1,7 +1,7 @@
 /* MAIN PAGE - ALL PLANETS */
 
 html {
-  margin: 25px;
+    margin: 25px;
 }
 
 button {
@@ -158,3 +158,37 @@ th, td {
 
 /* LOGIN AND REGISTRATION PAGES */
 
+.box-card-profile {
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.main-card-profile {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.main-card-profile-body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.main-card-profile-body {
+    overflow: hidden;
+    width: 80%;
+    background-color: #ececec;
+    padding: 10px;
+    margin: 10px auto;
+    box-shadow: 10px 12px 10px -10px rgba(0, 0, 0, 0.25);
+    line-height: 1.5;
+}
+
+.page-titles {
+    text-align: center;
+}
