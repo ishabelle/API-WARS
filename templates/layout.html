@@ -39,16 +39,17 @@
         </ul>
     </nav>
 </header>
-
-<div class="page-titles">
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-info alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>{{message}}</strong>
+<div class="alert-size">
+    <div class="page-titles">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-info alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{message}}</strong>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
-
+<br>
 {% block body %}
 
 {% endblock %}
