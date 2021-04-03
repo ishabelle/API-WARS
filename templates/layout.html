@@ -11,15 +11,20 @@
 <body>
 <nav>
     <ul>
+        {% if 'username' not in session %}
         <li>
             <a href="{{ url_for('registration_page') }}">REGISTRATION</a>
         </li>
         <li>
             <a href="{{ url_for('login_page') }}">LOGIN</a>
         </li>
+        {% endif %}
+        {% if 'username' in session %}
+        <li>SIGNED IN AS <span class="signed-as">{{session['username']}}</span></li>
         <li>
             <a href="{{ url_for('logout') }}">LOGOUT</a>
         </li>
+        {% endif %}
     </ul>
 </nav>
 {% block body %}
