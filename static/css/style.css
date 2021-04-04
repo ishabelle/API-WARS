@@ -235,3 +235,7 @@ th, td {
     width: 70%;
     z-index: 10;
 }
+
+.user_sign_in_as {
+    margin-left: auto;
+}
