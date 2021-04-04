@@ -1,4 +1,6 @@
 from datetime import datetime
+
+import flask
 from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 import os
 import db_manager
@@ -70,8 +72,12 @@ def logout():
 
 @app.route('/api/vote-planets', methods=['POST'])
 def vote_planets():
-    data = request.json
-    db_manager.vote_planet_by_planet_name(data)
+    json_data = flask.request.json
+    planet_id = json_data['planet_id']
+    planet_name = json_data['planet_name']
+    user_id = session['user_id']
+    submission_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    db_manager.vote_planet_by_planet_name(planet_id, planet_name, user_id, submission_time)
     return jsonify({'success': True})
 
 
