@@ -39,11 +39,13 @@
     </nav>
 </header>
 {% for message in get_flashed_messages() %}
-<div class="alert-size">
-    <div class="page-titles">
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>{{message}}</strong>
+<div class="modal-alert">
+    <div class="alert-size">
+        <div class="page-titles">
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>{{message}}</strong>
+            </div>
         </div>
     </div>
 </div>
