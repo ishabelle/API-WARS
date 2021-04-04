@@ -70,7 +70,7 @@ def logout():
     return redirect(url_for('index_page'))
 
 
-@app.route('/api/vote-planets', methods=['POST'])
+@app.route('/api/vote-planets', methods=['GET', 'POST'])
 def vote_planets():
     json_data = flask.request.json
     planet_id = json_data['planet_id']
@@ -78,6 +78,7 @@ def vote_planets():
     user_id = session['user_id']
     submission_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     db_manager.vote_planet_by_planet_name(planet_id, planet_name, user_id, submission_time)
+    flash('Voted on planet ' + planet_name + ' successfully')
     return jsonify({'success': True})
 
 
