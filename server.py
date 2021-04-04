@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 import os
 import db_manager
 
@@ -66,6 +66,19 @@ def logout():
     session.pop('username', None)
     flash("You are logged out!")
     return redirect(url_for('index_page'))
+
+
+@app.route('/api/vote-planets', methods=['POST'])
+def vote_planets():
+    data = request.json
+    db_manager.vote_planet_by_planet_name(data)
+    return jsonify({'success': True})
+
+
+@app.route('/api/get-planets-votes')
+def get_planets_votes():
+    statistics = db_manager.get_vote_statistics()
+    return jsonify(statistics)
 
 
 if __name__ == "__main__":
