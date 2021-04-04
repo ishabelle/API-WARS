@@ -22,9 +22,6 @@
                 <a href="{{ url_for('index_page') }}">HOME</a>
             </li>
             <li>
-                <a class="" href="{{ url_for('index_page') }}">PLANET LIST</a>
-            </li>
-            <li>
                 <a href="" id="voting-statistics">VOTING STATISTICS</a>
             </li>
             {% if 'username' not in session %}
@@ -36,10 +33,15 @@
             </li>
             {% endif %}
             {% if 'username' in session %}
-            <li>SIGNED IN AS <span class="signed-as">{{session['username']}}</span></li>
+            <li>SIGNED IN AS <span id="username" class="signed-as">{{session['username']}}</span></li>
+            <input type="hidden" name="" id="user-id" value="{{ session['id'] }}">
             <li>
                 <a href="{{ url_for('logout') }}">LOGOUT</a>
             </li>
+            {% else %}
+            <li class="user_sign_in_as"></li>
+
+
             {% endif %}
         </ul>
     </nav>
