@@ -10,6 +10,10 @@ const overlay = document.querySelector(".overlay");
 const closeModal = document.querySelector(".close-modal");
 const headerResidents = document.querySelector("#header-residents");
 
+const votingStatistics = document.querySelector("#voting-statistics");
+const tableStatistics = document.querySelector("#statistics")
+let username = document.getElementById("username")
+
 
 function downloadPlanets(url) {
     fetch(url)
@@ -35,6 +39,7 @@ function displayPlanets(data) {
                         <th>SURFACE WATER</th>
                         <th>POPULATION</th>
                         <th>RESIDENTS</th>
+                        <th>VOTE</th>
                     </tr>
                 </thead>
                 `
@@ -54,8 +59,35 @@ function displayPlanets(data) {
             `<button class="buttonResidents disabled" disabled>"NO KNOW RESIDENTS"</button>` :
             `<button class="${detail.name.split(" ")[0]} buttonResidents ">${detail.residents.length} RESIDENT(S)</button>`}
                                </td>
+                               <td>${username ?`<button class="vote-planets" id="${detail.name}">Vote</button>`: `<small></small>`}</td>
                            </tr>`
     })
+
+    let voteButtons = document.querySelectorAll(".vote-planets");
+    voteButtons.forEach((butt, idx) => {
+        butt.addEventListener('click', function (e){
+            e.preventDefault()
+            let userId = document.querySelector("#user-id").value
+            let planetId = e.target.id
+            let planetName = e.target.id
+            let newEntry = {
+                'planet_id': planetId,
+                'planet_name': planetName,
+                'user_id': userId
+            }
+            fetch('/api/vote-planets', {
+                method: 'POST',
+                body: JSON.stringify(newEntry),
+                headers: {
+                    'Content-type': 'application/json'
+                },
+            })
+                .then((response) => response)
+
+
+        })
+    })
+
 
     let buttonResidents = document.querySelectorAll('.buttonResidents');
     buttonResidents.forEach((button, idx) => {
@@ -181,6 +213,34 @@ closeModal.addEventListener('click', function () {
     overlay.classList.add('hidden')
     residentsTable.innerHTML = '';
     headerResidents.innerHTML = '';
+})
+
+
+votingStatistics.addEventListener('click', function (e){
+    e.preventDefault()
+    modalResidents.classList.toggle("hidden");
+    overlay.classList.toggle("hidden")
+    fetch('/api/get-planets-votes')
+        .then((response) => response.json())
+        .then((data) => {
+            const thead = `
+                        <thead>
+                                <tr>
+                                    <th>Planet Name</th>
+                                    <th>Received Votes</th>
+                                </tr>
+                        </thead>`
+            tableStatistics.insertAdjacentHTML('beforeend', thead)
+            let tBody = document.createElement("tbody");
+            tableStatistics.appendChild(tBody)
+            data.forEach((details) => {
+                tBody.innerHTML += `<tr>
+                                        <td>${details.planet_name}</td>
+                                        <td>${details.recived_votes}</td>
+                                    </tr>`
+            })
+
+        })
 })
 
 
