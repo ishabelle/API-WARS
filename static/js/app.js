@@ -39,7 +39,7 @@ function displayPlanets(data) {
                         <th>SURFACE WATER</th>
                         <th>POPULATION</th>
                         <th>RESIDENTS</th>
-                        <th>VOTE</th>
+                        ${username ?`<th>VOTE</th>` : ``}
                     </tr>
                 </thead>
                 `
@@ -59,7 +59,7 @@ function displayPlanets(data) {
             `<button class="buttonResidents disabled" disabled>"NO KNOW RESIDENTS"</button>` :
             `<button class="${detail.name.split(" ")[0]} buttonResidents ">${detail.residents.length} RESIDENT(S)</button>`}
                                </td>
-                               <td>${username ?`<button class="vote-planets" id="${detail.name}">Vote</button>`: `<small></small>`}</td>
+                               ${username ? `<td>${username ?`<button class="vote-planets" id="${detail.name}">Vote</button>`: `<small></small>`}</td>` : ``}
                            </tr>`
     })
 
