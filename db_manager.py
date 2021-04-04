@@ -64,3 +64,24 @@ def check_user(cursor: RealDictCursor, username: str):
 
 def verify_password(text_password, hashed_pass):
     return bcrypt.checkpw(text_password.encode('utf-8'), hashed_pass.encode('utf-8'))
+
+
+@db_common.connection_handler
+def vote_planet_by_planet_name(cursor: RealDictCursor, new_data):
+    query = """
+        INSERT INTO planet_votes (planet_id, planet_name, user_id, submission_time) 
+        VALUES (%s, %s, %s, %(submission_time)s) 
+    """
+    cursor.execute(query, (new_data['planet_id'],
+                           new_data['planet_name'],
+                           new_data['user_id']))
+
+
+@db_common.connection_handler
+def get_vote_statistics(cursor: RealDictCursor):
+    query = """
+    select planet_name, count(planet_id) as recived_votes from planet_votes
+    group by planet_name
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
