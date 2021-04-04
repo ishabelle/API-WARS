@@ -28,7 +28,6 @@ function displayPlanets(data) {
     allPlanets.innerHTML = `
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NAME</th>
                         <th>DIAMETER</th>
                         <th>CLIMATE</th>
@@ -42,10 +41,9 @@ function displayPlanets(data) {
     let tBody = document.createElement('tbody');
     tBody.setAttribute('id', 'tbody');
     allPlanets.appendChild(tBody)
-    data.results.forEach((detail, index) => {
+    data.results.forEach((detail) => {
         document.querySelector("#tbody")
             .innerHTML += `<tr>
-                               <td>${index + 1}</td>
                                <td>${detail.name}</td>
                                <td>${dataDiameterFormat(detail.diameter)}</td>
                                <td>${detail.climate}</td>
@@ -159,9 +157,8 @@ function dataMassFormat(data) {
 
 function dataHeightFormat(data) {
     if (data !== 'unknown') {
-        return new Intl.NumberFormat().format(data/100) + ' m'
-    }
-    else {
+        return new Intl.NumberFormat().format(data / 100) + ' m'
+    } else {
         return data
     }
 }
@@ -173,8 +170,7 @@ function dataGenderFormat(data) {
     }
     if (data === 'male') {
         return String('♂')
-    }
-    else {
+    } else {
         return data
     }
 }
