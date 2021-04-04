@@ -59,12 +59,12 @@ function displayPlanets(data) {
             `<button class="buttonResidents disabled" disabled>"NO KNOW RESIDENTS"</button>` :
             `<button class="${detail.name.split(" ")[0]} buttonResidents ">${detail.residents.length} RESIDENT(S)</button>`}
                                </td>
-                               ${username ? `<td>${username ?`<button class="vote-planets" id="${detail.name}">Vote</button>`: `<small></small>`}</td>` : ``}
+                               ${username ? `<td>${username ?`<button class="vote-planets" id="${detail.name}">VOTE</button>`: `<small></small>`}</td>` : ``}
                            </tr>`
     })
 
     let voteButtons = document.querySelectorAll(".vote-planets");
-    voteButtons.forEach((butt, idx) => {
+    voteButtons.forEach((butt) => {
         butt.addEventListener('click', function (e){
             e.preventDefault()
             let userId = document.querySelector("#user-id").value
@@ -226,8 +226,8 @@ votingStatistics.addEventListener('click', function (e){
             const thead = `
                         <thead>
                                 <tr>
-                                    <th>Planet Name</th>
-                                    <th>Received Votes</th>
+                                    <th>PLANET NAME</th>
+                                    <th>RECEIVED VOTES</th>
                                 </tr>
                         </thead>`
             tableStatistics.insertAdjacentHTML('beforeend', thead)
